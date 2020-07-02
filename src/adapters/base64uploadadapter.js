@@ -39,6 +39,8 @@ export default class Base64UploadAdapter extends Plugin {
 		return 'Base64UploadAdapter';
 	}
 
+	static compressRadio = 0.7
+
 	/**
 	 * @inheritDoc
 	 */
@@ -83,7 +85,7 @@ class Adapter {
 				// resolve( { default: reader.result } );
 				this.compressBase64Img(reader.result, (b)=>{
 					resolve( { default: b } );
-				})
+				}, Base64UploadAdapter.compressRadio)
 			} );
 			// ##Less-Adjust
 
@@ -117,11 +119,11 @@ class Adapter {
 	 * 
 	 * @param {图片base64字符串} base64 
 	 * @param {*结果回调} callback 
-	 * @param {*压缩系数0-1之间,默认0.6} quality 
+	 * @param {*压缩系数0-1之间} quality 
 	 * @param {*宽高限制，如果宽或高超过则等比例缩小至该值，默认2048} widthHeightMax 
 	 * @param {*图片最大容量限制，kb值，默认1024} sizeMax 
 	 */
-	compressBase64Img (base64, callback, quality=0.6, widthHeightMax=2048, sizeMax=1024) {
+	compressBase64Img (base64, callback, quality, widthHeightMax=2048, sizeMax=1024) {
 		var newImage = new Image();
 		// var quality = 0.6;    //压缩系数0-1之间
 		// console.log("quality/widthHeightMax/sizeMax = ", quality,'/', widthHeightMax,'/', sizeMax);
