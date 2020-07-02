@@ -39,7 +39,7 @@ export default class Base64UploadAdapter extends Plugin {
 		return 'Base64UploadAdapter';
 	}
 
-	static compressRadio = 0.7
+	// static compressRadio = 0.7
 
 	/**
 	 * @inheritDoc
@@ -85,7 +85,7 @@ class Adapter {
 				// resolve( { default: reader.result } );
 				this.compressBase64Img(reader.result, (b)=>{
 					resolve( { default: b } );
-				}, Base64UploadAdapter.compressRadio)
+				}, 0.7)
 			} );
 			// ##Less-Adjust
 
